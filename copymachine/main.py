@@ -135,8 +135,10 @@ def main() -> None:
             return
 
         if not jobs:
-            console.print("\n [yellow]No jobs ready for assembly.[/yellow]")
-            console.print(" Generate image packs at [link]app.getcopymachine.com[/link]\n")
+            console.print("\n [yellow]No jobs ready for assembly yet.[/yellow]")
+            console.print(" Generate some videos at app.getcopymachine.com")
+            console.print(" and come back when they show 'CLI Ready' status.\n")
+            input(" Press Enter to exit.")
             return
 
         _print_job_menu(jobs)
@@ -148,13 +150,12 @@ def main() -> None:
         if choice == "a":
             for job in jobs:
                 _assemble_job(job, key)
-            break
+            continue
 
         if choice.isdigit():
             idx = int(choice) - 1
             if 0 <= idx < len(jobs):
                 _assemble_job(jobs[idx], key)
-                break
             else:
                 console.print("[red]Invalid selection.[/red]")
         else:
